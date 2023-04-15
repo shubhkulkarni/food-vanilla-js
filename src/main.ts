@@ -1,5 +1,6 @@
 import { card } from './components/Card/card'
 import { navbar } from './components/navbar/navbar'
+import {products} from './views/products.js'
 import { Lib, useState } from './lib'
 import './style.css'
 
@@ -10,11 +11,13 @@ export const $ = new useState({ name:"Shubham" },render);
 
 export function render (){
     const e = Lib.clubComponents('my-app',[
-        navbar({'title':$.state.name,show:cond}),
-        card(),
-    ])
+        navbar({}),
+        products()
+    ],{class:'my-app'})
     
     Lib.renderApp(e)
 }
 
 render()
+
+console.log(Lib.spreadAttributes({class:'hello',data:'someData',href:null}))

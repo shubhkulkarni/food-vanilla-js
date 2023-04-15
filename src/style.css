@@ -5,9 +5,17 @@
 
 .lib-btn{
   padding: 10px 20px;
-  background-color: bisque;
+  background-color: rgba(255,255,255,0.3);
+  color: white;
+  border: 0;
+  border-radius: 20px;
+  cursor: pointer;
 }
 
 .actions{
   display: flex;
+}
+
+my-app{
+  background: black
 }

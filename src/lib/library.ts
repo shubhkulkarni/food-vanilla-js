@@ -4,14 +4,11 @@ class Lib {
 
     static clubComponents(parent: string,components: (Element | null)[],attributes?: {[key: string]: string}){
         const root = document.createElement(parent)
-
         if(attributes){
             Object.entries(attributes).forEach(i => {
                 root.setAttribute(i[0],i[1])
             })
         }
-        
-        
         components.forEach(c => {
             if(c) root.appendChild(c)
         })
@@ -36,6 +33,24 @@ class Lib {
         const element = document.createElement(name || 'div');
         element.innerHTML = template;
         return element;
+    }
+
+    static createListNode (list: (Element | null)[],parent: string = 'ul'){
+        const element = document.createElement(parent || 'div')
+        list.forEach(i => {
+            if(i) element.appendChild(i)
+        })
+        return element
+    }
+
+    static spreadAttributes(attributes: {[key:string]: any}){
+        let atrStr = ""
+        
+        Object.entries(attributes).forEach(i=>{
+            const exp = typeof(i[1]) === 'string' ? ` ${i[0]}="${i[1]}" ` : ` ${i[0]}=${i[1]} `
+            atrStr = atrStr + " " + exp 
+        })
+        return atrStr
     }
     
 }
