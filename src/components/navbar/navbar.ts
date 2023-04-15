@@ -1,7 +1,8 @@
-import Lib from "../../lib/library"
+import { Lib } from "../../lib";
 import { card } from "../Card/card"
 import { button } from "../button/button";
 import './navbar.css'
+
 
 interface INavbarProps {
     title: string;
@@ -11,10 +12,9 @@ export const navbar = (props: INavbarProps) => {
     const component = Lib.createComponent(`<div class='nav-ctr'>navbar ${props.title}</div>`)
 
     const btns = Lib.clubComponents('div',[button({label:"Click me"}),
-    button({label:"log out"})],'actions')
+    button({label:"log out"})],{class:'actions'})
 
-
-
+    
     return props.show ? Lib.clubComponents('nav-bar',[
         card(),
         component,

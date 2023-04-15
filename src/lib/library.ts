@@ -1,9 +1,17 @@
+import events from "./events"
+
 class Lib {
 
-    //todo: change classes to attributes obj
-    static clubComponents(parent: string,components: (Element | null)[],classes?:string){
+    static clubComponents(parent: string,components: (Element | null)[],attributes?: {[key: string]: string}){
         const root = document.createElement(parent)
-        root.setAttribute('class',classes || "")
+
+        if(attributes){
+            Object.entries(attributes).forEach(i => {
+                root.setAttribute(i[0],i[1])
+            })
+        }
+        
+        
         components.forEach(c => {
             if(c) root.appendChild(c)
         })
@@ -11,7 +19,17 @@ class Lib {
     }
 
     static renderApp(root: Element) {
-        document.querySelector<HTMLDivElement>('#app')!.appendChild(root);
+        const element = document.querySelector<HTMLDivElement>('#app')
+        element!.innerHTML = root.innerHTML
+        this.registerEventListeners()
+    }
+
+    static registerEventListeners(){
+        events.getRegistry().forEach(e => {
+            (document.querySelectorAll(e.selector) || []).forEach(i => {
+                i.addEventListener(e.event,e.callback)
+            })
+        })
     }
 
     static createComponent(template: string,name?:string){
