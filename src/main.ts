@@ -1,7 +1,6 @@
 import { card } from './components/Card/card'
 import { navbar } from './components/navbar/navbar'
-import Lib from './lib/library'
-import useState from './lib/state'
+import { Lib, useState } from './lib'
 import './style.css'
 
 const cond = true
