@@ -8,8 +8,8 @@ const cond = true
 
 export const $ = new useState({ name:"Shubham" },render);
 
+
 export function render (){
-    console.log('rendering')
     const e = Lib.clubComponents('my-app',[
         navbar({'title':$.state.name,show:cond}),
         card(),
