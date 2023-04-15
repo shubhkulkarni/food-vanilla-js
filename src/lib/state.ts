@@ -2,7 +2,7 @@ class useState {
     private store
     private render
 
-    constructor(initial: any,render: () => void) {
+    constructor(initial: any,render?: () => void) {
         this.store = initial || {}
         this.render = render
     }
@@ -18,7 +18,7 @@ class useState {
 
         this.store = { ...this.store, [key]: value }
         
-        if(toRender) {
+        if(toRender && this.render) {
             this.render()
         }
         

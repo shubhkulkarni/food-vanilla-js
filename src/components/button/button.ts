@@ -5,7 +5,7 @@ export const button = (label: string,props?: IComponentProps) => {
 
     
     const component = Lib.createComponent(`
-    <button class='lib-btn'>
+    <button class='lib-btn' ${Lib.spreadAttributes(props)} >
         ${label}
     </button>
     `) 

@@ -1,8 +1,9 @@
 import events from "./events"
+import IComponentProps from "./types"
 
 class Lib {
 
-    static clubComponents(parent: string,components: (Element | null)[],attributes?: {[key: string]: string}){
+    static clubComponents(parent: string,components: (Element | null)[],attributes?: IComponentProps){
         const root = document.createElement(parent)
         if(attributes){
             Object.entries(attributes).forEach(i => {
@@ -43,7 +44,8 @@ class Lib {
         return element
     }
 
-    static spreadAttributes(attributes: {[key:string]: any}){
+    static spreadAttributes(attributes?: IComponentProps){
+        if(!attributes) return ''
         let atrStr = ""
         
         Object.entries(attributes).forEach(i=>{

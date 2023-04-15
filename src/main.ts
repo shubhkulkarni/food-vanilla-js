@@ -6,7 +6,7 @@ import './style.css'
 
 const cond = true
 
-export const $ = new useState({ name:"Shubham" },render);
+export const $ = new useState({ name:"Shubham" ,cart:[],cartOpen:false},render);
 
 
 export function render (){
