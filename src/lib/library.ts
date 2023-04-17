@@ -1,4 +1,5 @@
 import events from "./events"
+import app from "./root"
 import IComponentProps from "./types"
 
 class Lib {
@@ -16,7 +17,9 @@ class Lib {
         return root
     }
 
-    static renderApp(root: Element) {
+    static renderApp(appRoot: (...args: any[]) => Element,parent?: string,attributes?: IComponentProps) {
+        if(!app.root.appRoot) app.add(parent || 'div',appRoot,attributes)
+        const root = Lib.clubComponents(parent || 'div',[appRoot()],attributes)
         const element = document.querySelector<HTMLDivElement>('#app')
         element!.innerHTML = root.innerHTML
         this.registerEventListeners()
@@ -54,6 +57,10 @@ class Lib {
         })
         return atrStr
     }
+
+    static getFormItem (selector: string){
+        return document.querySelector(selector) as HTMLFormElement
+    } 
     
 }
 

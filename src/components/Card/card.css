@@ -2,7 +2,7 @@
     padding: 10px;
     box-shadow: 0px 0px 10px lightgray;
     border-radius: 8px;
-    height: 50px;
+    /* height: 50px; */
     margin: 10px;
     cursor: pointer;
 }
@@ -16,4 +16,12 @@
     font-size: small;
     margin-top: 10px;
     color: gray;
+}
+
+.card-ctr button{
+    all: unset;
+}
+
+.card-ctr button:hover{
+    background-color: azure;
 }

@@ -1,5 +1,5 @@
-import { Lib, events, useState } from "../../lib";
-import { $, render } from "../../main";
+import { Lib, events, UseState } from "../../lib";
+import { $ } from "../../main";
 import { card } from "../Card/card"
 import { button } from "../button/button";
 import './navbar.css'

@@ -1,10 +1,11 @@
-class useState {
-    private store
-    private render
+import Lib from "./library";
+import app from "./root";
 
-    constructor(initial: any,render?: () => void) {
+class UseState {
+    private store
+    
+    constructor(initial?: any) {
         this.store = initial || {}
-        this.render = render
     }
 
     get state() {
@@ -18,14 +19,13 @@ class useState {
 
         this.store = { ...this.store, [key]: value }
         
-        if(toRender && this.render) {
-            this.render()
+        if(toRender) {
+            Lib.renderApp(app.root.appRoot as () => Element,app.root.parent,app.root.attributes)
+            console.log('rendered',app.root)
         }
-        
-
         console.log({state:this.state})
     }
 
 }
 
-export default useState
+export default UseState

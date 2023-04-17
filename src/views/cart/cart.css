@@ -1,0 +1,20 @@
+form{
+    padding: 0 20px;
+}
+
+tr,th,td{
+    border: 1px solid gray;
+    padding: 10px;
+}
+
+table{
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.table-heading{
+    margin-top: 20px;
+}
+.cart-checkout{
+    padding: 20px;
+}

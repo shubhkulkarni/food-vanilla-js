@@ -1,23 +1,19 @@
-import { card } from './components/Card/card'
 import { navbar } from './components/navbar/navbar'
 import {products} from './views/products.js'
-import { Lib, useState } from './lib'
+import { Lib, UseState } from './lib'
 import './style.css'
+import { cart } from './views/cart/cart'
 
-const cond = true
+export const $ = new UseState({ name:"Shubham" ,cart:[],cartOpen:false,userData:{name:'',address:''}});
 
-export const $ = new useState({ name:"Shubham" ,cart:[],cartOpen:false},render);
-
-
-export function render (){
-    const e = Lib.clubComponents('my-app',[
+    const appRoot = () => Lib.clubComponents('my-app',[
         navbar({}),
-        products()
+        products(),
+        $.state.cartOpen ? cart() : null
     ],{class:'my-app'})
     
-    Lib.renderApp(e)
-}
 
-render()
+    Lib.renderApp(appRoot)
 
-console.log(Lib.spreadAttributes({class:'hello',data:'someData',href:null}))
+
+
