@@ -17,6 +17,11 @@ class Lib {
         return root
     }
 
+    static refreshView(){
+        router.resolveCurrentRoute()
+        Lib.renderApp()
+    }
+
     static renderApp() {
        
         if(!router.currentRoot){
@@ -29,7 +34,7 @@ class Lib {
         const element = document.querySelector<HTMLDivElement>('#app')
         element!.innerHTML = root.innerHTML
         this.registerEventListeners()
-        
+
     }
 
     static registerEventListeners(){
@@ -39,8 +44,7 @@ class Lib {
             })
         })
         window.addEventListener('popstate', function () {
-            router.resolveCurrentRoute()
-            Lib.renderApp()
+            Lib.refreshView()
         });
     }
 

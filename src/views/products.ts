@@ -12,7 +12,7 @@ list.forEach(i => {
     })
 })
 
-const fetchState = new UseState({loading:false})
+const fetchState = new UseState({loading:false},'fetch')
 
 
 events.add('#fetch-btn','click',async () => {
@@ -39,7 +39,6 @@ export const products = () => {
     })
     const comp = Lib.createComponent(fetchState.state.loading ? `<div>Loading...</div>` : ``)
 
-    // const component = Lib.createComponent(template) 
     return Lib.clubComponents('div',[title,Lib.createListNode(newList),
         button('FetchData',{id:'fetch-btn'}),comp,
         button('Home',{id:'home'})

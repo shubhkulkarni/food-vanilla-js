@@ -23,8 +23,7 @@ class Router {
 
     navigate(path:string){
         history.pushState(undefined,"",path)
-        router.resolveCurrentRoute()
-        Lib.renderApp()
+        Lib.refreshView()
         console.log('rendered from navigate')
     }
 

@@ -3,9 +3,10 @@ import Lib from "../core/library";
 
 class UseState {
     private store
-    
-    constructor(initial?: any) {
+    private logger: string | undefined
+    constructor(initial?: any,logger?: string) {
         this.store = initial || {}
+        this.logger = logger
     }
 
     get state() {
@@ -21,9 +22,13 @@ class UseState {
         
         if(toRender) {
             Lib.renderApp()
-            console.log('rendered')
+            // console.log('rendered')
         }
-        console.log({state:this.state})
+
+        if(this.logger && this.logger?.trim()){
+            console.log(this.logger,this.state)
+        }
+        
     }
 
 }
