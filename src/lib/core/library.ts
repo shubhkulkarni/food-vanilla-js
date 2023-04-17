@@ -29,6 +29,7 @@ class Lib {
         const element = document.querySelector<HTMLDivElement>('#app')
         element!.innerHTML = root.innerHTML
         this.registerEventListeners()
+        
     }
 
     static registerEventListeners(){
@@ -37,10 +38,10 @@ class Lib {
                 i.addEventListener(e.event,e.callback)
             })
         })
-
-        // window.addEventListener('popstate', function (event) {
-        //     router.resolveCurrentRoute()
-        // });
+        window.addEventListener('popstate', function () {
+            router.resolveCurrentRoute()
+            Lib.renderApp()
+        });
     }
 
     static createComponent(template: string,name?:string){
