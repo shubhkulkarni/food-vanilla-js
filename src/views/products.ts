@@ -1,6 +1,6 @@
 import { card } from '../components/Card/card';
 import { button } from '../components/button/button';
-import {Lib, UseState, events} from '../lib'
+import {Lib, UseState, events, router} from '../lib'
 import { $ } from '../main';
 import './products.css'
 
@@ -24,6 +24,13 @@ events.add('#fetch-btn','click',async () => {
 
 })
 
+events.add('#home','click',async () => {
+    router.navigate("/home")
+})
+
+
+
+
 export const products = () => {
     const title = $.state.cartOpen ? Lib.createComponent('Cart') : Lib.createComponent('Products')
     const items = $.state.cartOpen ? [...new Set($.state.cart)] as string[] : list
@@ -33,5 +40,8 @@ export const products = () => {
     const comp = Lib.createComponent(fetchState.state.loading ? `<div>Loading...</div>` : ``)
 
     // const component = Lib.createComponent(template) 
-    return Lib.clubComponents('div',[title,Lib.createListNode(newList),button('FetchData',{id:'fetch-btn'}),comp],{class:'product-list'})
+    return Lib.clubComponents('div',[title,Lib.createListNode(newList),
+        button('FetchData',{id:'fetch-btn'}),comp,
+        button('Home',{id:'home'})
+    ],{class:'product-list'})
 }

@@ -20,6 +20,6 @@ export const navbar = (props: INavbarProps) => {
     
     return Lib.clubComponents('nav-bar',[
         component,
-        button("Cart",{id:'cart-btn'})
+        button(`Cart (${$.state.cart.length})`,{id:'cart-btn'})
     ],{class:'nav-bar'});
 }

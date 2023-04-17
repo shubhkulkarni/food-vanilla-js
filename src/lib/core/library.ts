@@ -1,6 +1,6 @@
-import events from "./events"
-import app from "./root"
-import IComponentProps from "./types"
+import events from "../events/events"
+import  { IComponentProps } from "../types/types"
+import router from "../routing/routing"
 
 class Lib {
 
@@ -17,9 +17,15 @@ class Lib {
         return root
     }
 
-    static renderApp(appRoot: (...args: any[]) => Element,parent?: string,attributes?: IComponentProps) {
-        if(!app.root.appRoot) app.add(parent || 'div',appRoot,attributes)
-        const root = Lib.clubComponents(parent || 'div',[appRoot()],attributes)
+    static renderApp() {
+       
+        if(!router.currentRoot){
+            router.resolveCurrentRoute();
+        }
+
+        let appRoot = router.currentRoot;
+        if(!appRoot) return 
+        const root = Lib.clubComponents('div',[appRoot()])
         const element = document.querySelector<HTMLDivElement>('#app')
         element!.innerHTML = root.innerHTML
         this.registerEventListeners()
@@ -31,6 +37,10 @@ class Lib {
                 i.addEventListener(e.event,e.callback)
             })
         })
+
+        // window.addEventListener('popstate', function (event) {
+        //     router.resolveCurrentRoute()
+        // });
     }
 
     static createComponent(template: string,name?:string){
@@ -52,7 +62,7 @@ class Lib {
         let atrStr = ""
         
         Object.entries(attributes).forEach(i=>{
-            const exp = typeof(i[1]) === 'string' ? ` ${i[0]}="${i[1]}" ` : ` ${i[0]}=${i[1]} `
+            const exp = typeof(i[1]) === 'string' ? ` ${i[0]}="${i[1]}" ` : ` ${i[0]}=${i[1]} `;
             atrStr = atrStr + " " + exp 
         })
         return atrStr

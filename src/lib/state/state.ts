@@ -1,5 +1,5 @@
-import Lib from "./library";
-import app from "./root";
+import Lib from "../core/library";
+
 
 class UseState {
     private store
@@ -20,8 +20,8 @@ class UseState {
         this.store = { ...this.store, [key]: value }
         
         if(toRender) {
-            Lib.renderApp(app.root.appRoot as () => Element,app.root.parent,app.root.attributes)
-            console.log('rendered',app.root)
+            Lib.renderApp()
+            console.log('rendered')
         }
         console.log({state:this.state})
     }

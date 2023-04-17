@@ -1,8 +1,13 @@
-import events from "./events";
-import Lib from "./library";
-import UseState from "./state";
-import  IComponentProps  from "./types";
+import events from "./events/events";
+import Lib from "./core/library";
+import UseState from "./state/state";
+import  {IComponentProps,TComponentFunction,IRoute}  from "./types/types";
+import router from "./routing/routing";
 
-export { events, Lib, UseState };
-export type { IComponentProps };
+
+if (!window)
+  throw new Error("stateful-dom library works only on browser!");
+
+export { events, Lib, UseState,router};
+export type { IComponentProps,TComponentFunction,IRoute };
 
