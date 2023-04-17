@@ -54,7 +54,7 @@ class Lib {
         return element;
     }
 
-    static createListNode (list: (Element | null)[],parent: string = 'ul'){
+    static createListNode (list: (Element | null)[],parent: string = 'div'){
         const element = document.createElement(parent || 'div')
         list.forEach(i => {
             if(i) element.appendChild(i)
@@ -62,13 +62,15 @@ class Lib {
         return element
     }
 
-    static spreadAttributes(attributes?: IComponentProps){
+    static spreadAttributes(attributes?: IComponentProps,omits: string[] = []){
         if(!attributes) return ''
         let atrStr = ""
         
         Object.entries(attributes).forEach(i=>{
-            const exp = typeof(i[1]) === 'string' ? ` ${i[0]}="${i[1]}" ` : ` ${i[0]}=${i[1]} `;
-            atrStr = atrStr + " " + exp 
+            if(!omits.includes(i[0])){
+                const exp = typeof(i[1]) === 'string' ? ` ${i[0]}="${i[1]}" ` : ` ${i[0]}=${i[1]} `;
+                atrStr = atrStr + " " + exp 
+            }
         })
         return atrStr
     }

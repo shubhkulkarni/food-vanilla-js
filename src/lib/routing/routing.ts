@@ -1,5 +1,6 @@
 import Lib from "../core/library";
-import { IRoute, TComponentFunction, } from "../types/types";
+import events from "../events/events";
+import { IComponentProps, IRoute, TComponentFunction, } from "../types/types";
 
 class Router {
     private routing: IRoute[] = []
@@ -32,6 +33,10 @@ class Router {
         const currentPath = window.location.pathname
         const currentRoute = this.routing.find(i=>i.path === currentPath)
         this.currentAppRoot = currentRoute?.root || null
+    }
+
+    link(content: string,attributes: IComponentProps){ //todo
+        return `<a ${Lib.spreadAttributes(attributes,['href'])}> ${content} </a>`
     }
 
 }

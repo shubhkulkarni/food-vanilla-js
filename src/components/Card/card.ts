@@ -5,7 +5,7 @@ import "./card.css"
 
 
 export const card = (title: string,subtitle:string,props?: IComponentProps) => {
-    const items = $.state.cart.filter(i=>i === title).length
+    const items = $.state.cart.filter((i: string)=>i === title).length
 
     const template = `<div class='card-ctr' ${Lib.spreadAttributes(props)} > 
     

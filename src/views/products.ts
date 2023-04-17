@@ -29,18 +29,22 @@ events.add('#home','click',async () => {
 })
 
 
-
-
 export const products = () => {
     const title = $.state.cartOpen ? Lib.createComponent('Cart') : Lib.createComponent('Products')
     const items = $.state.cartOpen ? [...new Set($.state.cart)] as string[] : list
     const newList = items.map((i:string) => {
         return card(i,'Order this item now!',{id:i})
     })
+
+    const users = ($.state.users || []).map(i => {
+        return Lib.createComponent(`<div>${i.name}</div>`)
+    })
+
     const comp = Lib.createComponent(fetchState.state.loading ? `<div>Loading...</div>` : ``)
 
     return Lib.clubComponents('div',[title,Lib.createListNode(newList),
         button('FetchData',{id:'fetch-btn'}),comp,
-        button('Home',{id:'home'})
+        button('Home',{id:'home'}),
+        Lib.createListNode(users)
     ],{class:'product-list'})
 }

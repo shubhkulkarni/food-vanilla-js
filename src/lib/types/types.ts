@@ -8,3 +8,7 @@ export interface IRoute{
     path: string;
     root: TComponentFunction
 }
+
+export interface ILinkProps extends IComponentProps{
+    href: string
+}

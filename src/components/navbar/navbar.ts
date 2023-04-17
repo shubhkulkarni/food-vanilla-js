@@ -1,4 +1,4 @@
-import { Lib, events, UseState } from "../../lib";
+import { Lib, events, UseState, link } from "../../lib";
 import { $ } from "../../main";
 import { card } from "../Card/card"
 import { button } from "../button/button";
