@@ -4,7 +4,7 @@ import Lib from "../core/library";
 class UseState {
     private store
     private logger: string | undefined
-    constructor(initial?: any,logger?: string) {
+    constructor(initial?: {[key: string]: any},logger?: string) {
         this.store = initial || {}
         this.logger = logger
     }
@@ -16,6 +16,7 @@ class UseState {
     setState(key: string, value: any) {
 
         let toRender = false;
+        
         if (this.store[key] !== value) toRender =  true;
 
         this.store = { ...this.store, [key]: value }
