@@ -1,7 +1,7 @@
 import Lib from "../core/library";
 
 
-class UseState {
+class useState {
     private store
     private logger: string | undefined
     constructor(initial?: {[key: string]: any},logger?: string) {
@@ -14,7 +14,7 @@ class UseState {
     }
 
     setState(key: string, value: any) {
-
+        console.log(this.store)
         let toRender = false;
         
         if (this.store[key] !== value) toRender =  true;
@@ -23,7 +23,6 @@ class UseState {
         
         if(toRender) {
             Lib.renderApp()
-            // console.log('rendered')
         }
 
         if(this.logger && this.logger?.trim()){
@@ -34,4 +33,4 @@ class UseState {
 
 }
 
-export default UseState
+export default useState

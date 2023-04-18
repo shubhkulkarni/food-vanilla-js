@@ -1,6 +1,6 @@
 import { card } from '../components/Card/card';
 import { button } from '../components/button/button';
-import {Lib, UseState, events, router} from '../lib'
+import {Lib, useState, events, router} from '../lib'
 import { $ } from '../main';
 import './products.css'
 
@@ -12,7 +12,7 @@ list.forEach(i => {
     })
 })
 
-const fetchState = new UseState({loading:false},'fetch')
+const fetchState = new useState({loading:false},'fetch')
 
 
 events.add('#fetch-btn','click',async () => {

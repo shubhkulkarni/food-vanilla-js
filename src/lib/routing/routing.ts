@@ -1,42 +1,50 @@
 import Lib from "../core/library";
-import events from "../events/events";
 import { IComponentProps, IRoute, TComponentFunction, } from "../types/types";
 
 class Router {
     private routing: IRoute[] = []
     private currentAppRoot: TComponentFunction | undefined | null
-    constructor(){
-        
+    constructor() {
+
     }
 
-    get routes(){
+    get routes() {
         return this.routing
     }
 
-    add(routes: IRoute[] | TComponentFunction){
-        if(!(routes instanceof Array)) routes = [{path:"/", root: routes}]
-        this.routing = routes
+    render(routes: IRoute[] | TComponentFunction) {
+        if (!this.routing.length) {
+            if (!(routes instanceof Array)) routes = [{ path: "/", root: routes }]
+            this.routing = routes
+            const element = document.querySelector<HTMLDivElement>('#app')
+            if(!element){
+                const body = document.querySelector('body')
+                const app = document.createElement('div')
+                app.setAttribute('id','app')
+                body?.appendChild(app)
+            }
+            Lib.renderApp()
+        }
     }
 
-    get currentRoot(){
+    get currentRoot() {
         return this.currentAppRoot
     }
 
-    navigate(path:string){
-        history.pushState(undefined,"",path)
+    navigate(path: string) {
+        history.pushState(undefined, "", path)
         Lib.refreshView()
         console.log('rendered from navigate')
     }
 
-    resolveCurrentRoute(){
-        console.log('cllaed')
+    resolveCurrentRoute() {
         const currentPath = window.location.pathname
-        const currentRoute = this.routing.find(i=>i.path === currentPath)
+        const currentRoute = this.routing.find(i => i.path === currentPath)
         this.currentAppRoot = currentRoute?.root || null
     }
 
-    link(content: string,attributes: IComponentProps){ //todo
-        return `<a ${Lib.spreadAttributes(attributes,['href'])}> ${content} </a>`
+    link(content: string, attributes: IComponentProps) { //todo
+        return `<a ${Lib.spreadAttributes(attributes, ['href'])}> ${content} </a>`
     }
 
 }

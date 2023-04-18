@@ -34,7 +34,6 @@ class Lib {
         const element = document.querySelector<HTMLDivElement>('#app')
         element!.innerHTML = root.innerHTML
         this.registerEventListeners()
-
     }
 
     static registerEventListeners(){
@@ -80,6 +79,5 @@ class Lib {
     } 
     
 }
-
 
 export default Lib
